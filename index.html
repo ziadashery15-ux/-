@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08111f">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Ziad Study Hub</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#10233a;--text:#f8fafc;--muted:#a8b5c7;--line:#22354d;--accent:#2f7cff;--ok:#22c55e;--danger:#ef4444}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer}
+.landing{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#06101c}
+.landing:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,8,15,.25),rgba(4,10,18,.72) 62%,#07111f 100%),url("images/ziad1.jpg") center/cover no-repeat;filter:saturate(1.05)}
+.landing:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(47,124,255,.26),transparent 38%)}
+.hero{position:relative;z-index:2;width:min(92%,760px);padding:34px 20px;text-align:center}
+.profile{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 15px 60px #0008;margin:auto;display:block}
+.kicker{display:inline-block;margin-top:18px;padding:7px 11px;border:1px solid #ffffff2c;border-radius:999px;background:#ffffff12;backdrop-filter:blur(8px);font-size:12px;color:#dbeafe}
+.hero h1{font-size:clamp(40px,10vw,76px);line-height:1;margin:12px 0 8px;letter-spacing:-2px}.hero .creator{color:#dce7f5;margin:0 0 20px;font-size:15px}.hero .desc{color:#d8e2ef;max-width:600px;margin:0 auto 24px;line-height:1.8}
+.start{border:0;background:#fff;color:#07111f;border-radius:17px;padding:15px 34px;font-weight:900;font-size:17px;box-shadow:0 12px 40px #0008}.start:active{transform:scale(.98)}
+.app{display:none;min-height:100svh}.top{position:sticky;top:0;z-index:10;background:#08111fe8;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 16px}.topin{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}.mini{display:flex;align-items:center;gap:10px}.avatar{width:44px;height:44px;border-radius:14px;object-fit:cover;border:1px solid #ffffff30}.title b{display:block}.title span{font-size:11px;color:var(--muted)}
+.nav{display:flex;gap:7px;overflow:auto;padding:11px 0 1px;max-width:1050px;margin:auto}.nav button{flex:0 0 auto;border:1px solid var(--line);background:#0b1727;color:#cbd5e1;border-radius:12px;padding:9px 12px}.nav button.active{background:var(--accent);border-color:var(--accent);color:white}
+main{max-width:1050px;margin:auto;padding:18px 14px 42px}.view{display:none}.view.show{display:block}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:14px}.stat b{display:block;font-size:25px}.stat span{font-size:11px;color:var(--muted)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:16px;margin-top:13px}.card h2{font-size:17px;margin:0 0 13px}.progress{height:10px;border-radius:99px;background:#18273a;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--accent)}
+.task{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:11px;margin:8px 0;background:#0a1626}.task input{width:19px;height:19px;accent-color:var(--ok)}.task.done{opacity:.58}.task.done .name{text-decoration:line-through}.name{font-size:14px;font-weight:750}.time{font-size:11px;color:var(--muted);white-space:nowrap}
+.days{display:flex;gap:7px;overflow:auto}.days button{border:1px solid var(--line);background:#0a1626;color:#cbd5e1;border-radius:11px;padding:9px 12px}.days button.sel{background:#fff;color:#07111f}
+.note,.field{width:100%;background:#081421;color:white;border:1px solid var(--line);border-radius:13px;padding:11px}.note{min-height:90px;resize:vertical}.field{margin:7px 0}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.photo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:15px;border:1px solid var(--line);cursor:pointer}
+.quote{font-size:15px;line-height:1.8;color:#dbeafe}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px}.primary,.secondary,.danger{border:0;border-radius:12px;padding:10px 13px}.primary{background:var(--accent);color:#fff}.secondary{background:#17263a;color:#fff}.danger{background:#35161a;color:#ffd9dd}
+.small{font-size:11px;color:var(--muted)}
+.custom-card{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:15px;padding:11px;margin:8px 0;background:#0a1626}.custom-card img{width:72px;height:72px;object-fit:cover;border-radius:12px}.custom-card .grow{flex:1}.custom-card b{display:block;margin-bottom:5px}.custom-card p{margin:0;color:#cbd5e1;white-space:pre-wrap}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;z-index:50;padding:18px}.modal.show{display:grid}.modal img{max-width:95vw;max-height:85vh;border-radius:18px}.close{position:fixed;top:16px;left:16px;border:0;border-radius:50%;width:42px;height:42px;background:#fff;color:#111;font-size:20px}
+footer{text-align:center;color:#7f91a7;font-size:12px;padding:10px 0 30px}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}.task{grid-template-columns:25px 1fr}.time{grid-column:2}.profile{width:125px;height:125px}}
+</style>
+</head>
+<body>
+<section class="landing" id="landing">
+  <div class="hero">
+    <img class="profile" src="images/icon-512.png" alt="زياد">
+    <span class="kicker">PERSONAL STUDY HUB</span>
+    <h1 id="landingTitle">Ziad Study Hub</h1>
+    <p class="creator">صنعها <b>زياد محمد</b> ✨</p>
+    <p class="desc" id="landingDesc">مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.</p>
+    <button class="start" onclick="enterApp()">START 🚀</button>
+  </div>
+</section>
+
+<section class="app" id="app">
+<header class="top">
+  <div class="topin">
+    <div class="mini"><img class="avatar" src="images/icon-512.png"><div class="title"><b>Ziad Study Hub</b><span>صنعها زياد محمد • Keep going.</span></div></div>
+  </div>
+  <div class="nav" id="nav">
+    <button class="active" data-v="home">الرئيسية</button><button data-v="week">الأسبوع</button><button data-v="today">تاسكات اليوم</button><button data-v="memories">صوري</button><button data-v="custom">إضافاتي</button><button data-v="stats">الإحصائيات</button><button data-v="control">التحكم ⚙️</button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="view show">
+  <div class="grid"><div class="stat"><b id="todayPct">0%</b><span>إنجاز اليوم</span></div><div class="stat"><b id="weekPct">0%</b><span>إنجاز الأسبوع</span></div><div class="stat"><b id="doneCount">0</b><span>مكتمل</span></div><div class="stat"><b id="leftCount">0</b><span>متبقي</span></div></div>
+  <div class="card"><h2>تقدم اليوم</h2><div class="progress"><i id="todayBar"></i></div><p class="quote" id="todayText"></p></div>
+  <div class="card"><h2 id="homeMessageTitle">رسالة زياد لنفسه</h2><p class="quote" id="homeMessage">الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي.</p></div>
+  <div class="card"><h2>ملاحظات اليوم</h2><textarea id="noteHome" class="note" placeholder="اكتب أي حاجة مهمة..."></textarea></div>
+</section>
+
+<section id="week" class="view"><div class="card"><h2>الجدول الأسبوعي</h2><div id="weekList"></div></div></section>
+
+<section id="today" class="view"><div class="card"><h2>تاسكات اليوم</h2><div class="days" id="dayPicker"></div><div id="todayList"></div><h3>ملاحظات</h3><textarea id="noteToday" class="note" placeholder="ملاحظات اليوم..."></textarea></div></section>
+
+<section id="memories" class="view"><div class="card"><h2>صوري 📸</h2><p class="quote">صورك الأساسية موجودة هنا، وتقدر تضيف صور جديدة من قسم «إضافاتي».</p><div class="gallery" id="gallery"></div></div></section>
+
+<section id="custom" class="view">
+  <div class="card"><h2>إضافاتي ✨</h2><p class="small">أي صورة أو كلام تضيفه هنا بيتحفظ على نفس المتصفح عندك.</p><div id="customList"></div></div>
+</section>
+
+<section id="stats" class="view"><div class="card"><h2>إحصائياتك</h2><p>إجمالي التاسكات: <b id="stTotal"></b></p><p>المكتمل: <b id="stDone"></b></p><p>المتبقي: <b id="stLeft"></b></p><p>نسبة الأسبوع: <b id="stPct"></b></p><div class="progress"><i id="stBar"></i></div></div><div class="card"><h2>إعادة ضبط</h2><button class="secondary" id="reset">مسح علامات الإنجاز</button></div></section>
+
+<section id="control" class="view">
+  <div class="card"><h2>لوحة تحكم زياد ⚙️</h2><p class="small">من هنا تقدر تغيّر الكلام وتضيف صور أو بطاقات شخصية من غير ما تلمس الكود.</p></div>
+  <div class="card">
+    <h2>تعديل الواجهة</h2>
+    <input id="editTitle" class="field" placeholder="اسم المنصة">
+    <textarea id="editDesc" class="note" placeholder="وصف المنصة"></textarea>
+    <input id="editMessageTitle" class="field" placeholder="عنوان الرسالة">
+    <textarea id="editMessage" class="note" placeholder="الرسالة"></textarea>
+    <div class="btnrow"><button class="primary" onclick="saveSettings()">حفظ التعديلات</button><button class="secondary" onclick="restoreSettings()">استرجاع الافتراضي</button></div>
+  </div>
+  <div class="card">
+    <h2>إضافة صورة + كلام</h2>
+    <input id="photoFile" class="field" type="file" accept="image/*">
+    <input id="photoTitle" class="field" placeholder="عنوان الصورة">
+    <textarea id="photoText" class="note" placeholder="اكتب كلام يظهر تحت الصورة..."></textarea>
+    <div class="btnrow"><button class="primary" onclick="addCustom()">إضافة للمنصة</button></div>
+    <p class="small">نصيحة: الصور الكبيرة تستهلك مساحة المتصفح؛ الأفضل اختيار صور واضحة بحجم معقول.</p>
+  </div>
+</section>
+<footer>© 2026 Ziad Study Hub • صنعها زياد محمد</footer>
+</main>
+</section>
+
+<div class="modal" id="modal"><button class="close" onclick="closeModal()">×</button><img id="modalImg"></div>
+
+<script>
+const schedule={
+"السبت":[["9:00–10:30","ماث — مذاكرة وفهم"],["11:00–12:30","ماث — حل أسئلة"],["2:00–3:30","فيزياء"],["4:00–5:30","كيمياء"],["7:00–9:30","درس ماث"]],
+"الأحد":[["9:00–2:00","درس كيمياء + الطريق"],["3:15–4:45","مراجعة درس الكيمياء + حل"],["5:15–6:45","جيم"],["7:30–9:00","ماث"],["9:30–10:45","فيزياء"]],
+"الإثنين":[["9:00–2:00","درس فيزياء + الطريق"],["3:15–4:45","مراجعة درس الفيزياء + حل"],["5:15–6:45","جيم"],["7:30–9:00","ماث"],["9:30–10:45","كيمياء"],["11:30–12:15","ماث — مراجعة سريعة"]],
+"الثلاثاء":[["12:30–2:00","ماث — مذاكرة عميقة"],["2:30–4:00","فيزياء — فهم"],["4:30–6:00","ماث — حل مسائل"],["6:00–7:00","راحة + تجهيز للكورة"],["7:00–8:15","كيمياء"],["8:15–8:45","تجهيز للكورة"],["9:00","تمرين كورة"]],
+"الأربعاء":[["9:00–2:00","درس كيمياء + الطريق"],["3:30–5:00","مراجعة كيمياء"],["7:00–11:00","دروس ماث + كيمياء"]],
+"الخميس":[["9:00–2:00","درس فيزياء + الطريق"],["3:15–4:45","مراجعة درس الفيزياء + حل"],["5:15–6:45","جيم"],["7:30–8:30","ماث — جلسة خفيفة"],["8:30–9:00","تجهيز للكورة"],["9:00","تمرين كورة"]],
+"الجمعة":[["9:30–11:00","ماث — حل امتحان / مجموعة مسائل"],["11:30–1:00","فيزياء — حل"],["2:30–4:00","كيمياء — حل"],["5:00–6:30","ماث — مراجعة أخطاء الأسبوع"],["6:30–8:00","مراجعة أسبوعية + ترتيب الأسبوع القادم"]]
+};
+const days=Object.keys(schedule), key="ziadTasksV3", notesKey="ziadNotesV3", settingsKey="ziadSettingsV3", customKey="ziadCustomV3";
+let state=JSON.parse(localStorage.getItem(key)||"{}"), notes=JSON.parse(localStorage.getItem(notesKey)||"{}"), custom=JSON.parse(localStorage.getItem(customKey)||"[]");
+let settings=Object.assign({title:"Ziad Study Hub",desc:"مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.",messageTitle:"رسالة زياد لنفسه",message:"الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي."},JSON.parse(localStorage.getItem(settingsKey)||"{}"));
+let selected=days[new Date().getDay()===0?6:new Date().getDay()-1];
+
+function enterApp(){document.getElementById("landing").style.display="none";document.getElementById("app").style.display="block";window.scrollTo(0,0)}
+function id(d,i){return d+"_"+i} function isDone(d,i){return !!state[id(d,i)]}
+function stats(){let total=0,done=0;days.forEach(d=>schedule[d].forEach((_,i)=>{total++;if(isDone(d,i))done++}));return {total,done,left:total-done,pct:total?Math.round(done/total*100):0}}
+function dayPct(d){let a=schedule[d],n=a.filter((_,i)=>isDone(d,i)).length;return a.length?Math.round(n/a.length*100):0}
+function taskHTML(d,i,x){return `<label class="task ${isDone(d,i)?'done':''}"><input type="checkbox" ${isDone(d,i)?'checked':''} onchange="state['${id(d,i)}']=this.checked;save()"><span class="name">${x[1]}</span><span class="time">${x[0]}</span></label>`}
+function save(){localStorage.setItem(key,JSON.stringify(state));localStorage.setItem(notesKey,JSON.stringify(notes));render()}
+function render(){
+ const s=stats(), items=schedule[selected]||[], td=items.filter((_,i)=>isDone(selected,i)).length, tp=items.length?Math.round(td/items.length*100):0;
+ document.getElementById("todayPct").textContent=tp+"%";document.getElementById("weekPct").textContent=s.pct+"%";document.getElementById("doneCount").textContent=s.done;document.getElementById("leftCount").textContent=s.left;
+ document.getElementById("todayBar").style.width=tp+"%";document.getElementById("todayText").textContent=`${td} من ${items.length} تاسكات مكتملة — ${selected}`;
+ document.getElementById("noteHome").value=notes[selected]||"";document.getElementById("noteToday").value=notes[selected]||"";
+ document.getElementById("todayList").innerHTML=items.map((x,i)=>taskHTML(selected,i,x)).join("");
+ document.getElementById("weekList").innerHTML=days.map(d=>`<div class="card" style="margin-top:10px;background:#091626"><h3>${d} <small style="color:#8fa1b7">(${dayPct(d)}%)</small></h3>${schedule[d].map((x,i)=>taskHTML(d,i,x)).join("")}</div>`).join("");
+ document.getElementById("dayPicker").innerHTML=days.map(d=>`<button class="${d===selected?'sel':''}" onclick="selected='${d}';render()">${d}</button>`).join("");
+ document.getElementById("stTotal").textContent=s.total;document.getElementById("stDone").textContent=s.done;document.getElementById("stLeft").textContent=s.left;document.getElementById("stPct").textContent=s.pct+"%";document.getElementById("stBar").style.width=s.pct+"%";
+ document.getElementById("landingTitle").textContent=settings.title;document.getElementById("landingDesc").textContent=settings.desc;document.getElementById("homeMessageTitle").textContent=settings.messageTitle;document.getElementById("homeMessage").textContent=settings.message;
+ document.getElementById("editTitle").value=settings.title;document.getElementById("editDesc").value=settings.desc;document.getElementById("editMessageTitle").value=settings.messageTitle;document.getElementById("editMessage").value=settings.message;
+ renderCustom();
+}
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".view").forEach(x=>x.classList.remove("show"));document.getElementById(b.dataset.v).classList.add("show");window.scrollTo(0,0)});
+document.getElementById("noteHome").oninput=e=>{notes[selected]=e.target.value;localStorage.setItem(notesKey,JSON.stringify(notes));document.getElementById("noteToday").value=e.target.value};
+document.getElementById("noteToday").oninput=e=>{notes[selected]=e.target.value;localStorage.setItem(notesKey,JSON.stringify(notes));document.getElementById("noteHome").value=e.target.value};
+document.getElementById("reset").onclick=()=>{if(confirm("تمسح كل علامات الإنجاز؟")){state={};save()}};
+function saveSettings(){settings={title:document.getElementById("editTitle").value.trim()||"Ziad Study Hub",desc:document.getElementById("editDesc").value.trim(),messageTitle:document.getElementById("editMessageTitle").value.trim()||"رسالة زياد لنفسه",message:document.getElementById("editMessage").value.trim()};localStorage.setItem(settingsKey,JSON.stringify(settings));render();alert("اتحفظت التعديلات ✨")}
+function restoreSettings(){localStorage.removeItem(settingsKey);settings={title:"Ziad Study Hub",desc:"مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.",messageTitle:"رسالة زياد لنفسه",message:"الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي."};render()}
+function addCustom(){
+ const file=document.getElementById("photoFile").files[0], title=document.getElementById("photoTitle").value.trim(), text=document.getElementById("photoText").value.trim();
+ if(!file && !text){alert("ضيف صورة أو كلام الأول.");return}
+ const finish=(image)=>{custom.unshift({id:Date.now(),title:title||"إضافة جديدة",text,image});localStorage.setItem(customKey,JSON.stringify(custom));document.getElementById("photoFile").value="";document.getElementById("photoTitle").value="";document.getElementById("photoText").value="";render();alert("اتضافت للمنصة ✨")};
+ if(file){const r=new FileReader();r.onload=()=>finish(r.result);r.readAsDataURL(file)}else finish("");
+}
+function deleteCustom(i){custom.splice(i,1);localStorage.setItem(customKey,JSON.stringify(custom));render()}
+function renderCustom(){
+ const el=document.getElementById("customList");
+ if(!custom.length){el.innerHTML='<p class="small">لسه مفيش إضافات. جرّب تضيف صورة أو رسالة من فوق.</p>';return}
+ el.innerHTML=custom.map((x,i)=>`<div class="custom-card">${x.image?`<img src="${x.image}" onclick="openImg('${x.image}')">`:""}<div class="grow"><b>${escapeHtml(x.title)}</b><p>${escapeHtml(x.text)}</p><button class="danger" style="margin-top:8px" onclick="deleteCustom(${i})">حذف</button></div></div>`).join("");
+}
+function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function openImg(src){document.getElementById("modalImg").src=src;document.getElementById("modal").classList.add("show")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+const gallery=document.getElementById("gallery");
+[1,2,3,4,5,6].forEach(i=>{const img=document.createElement("img");img.className="photo";img.src=`images/ziad${i}.jpg`;img.alt="صورة زياد";img.onclick=()=>openImg(img.src);gallery.appendChild(img)});
+render();
+</script>
+</body>
+</html>
