@@ -3,163 +3,418 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#08111f">
+<meta name="theme-color" content="#071a2e">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Ziad Study Hub</title>
+<link rel="icon" href="images/icon-512.png">
+<link rel="apple-touch-icon" href="images/icon-512.png">
+<title>Ziad Study Hub — V6</title>
 <style>
-:root{--bg:#07111f;--panel:#0d1a2b;--panel2:#10233a;--text:#f8fafc;--muted:#a8b5c7;--line:#22354d;--accent:#2f7cff;--ok:#22c55e;--danger:#ef4444}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif}
-button,input,textarea{font:inherit}button{cursor:pointer}
-.landing{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#06101c}
-.landing:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,8,15,.25),rgba(4,10,18,.72) 62%,#07111f 100%),url("images/ziad1.jpg") center/cover no-repeat;filter:saturate(1.05)}
-.landing:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(47,124,255,.26),transparent 38%)}
-.hero{position:relative;z-index:2;width:min(92%,760px);padding:34px 20px;text-align:center}
-.profile{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 15px 60px #0008;margin:auto;display:block}
-.kicker{display:inline-block;margin-top:18px;padding:7px 11px;border:1px solid #ffffff2c;border-radius:999px;background:#ffffff12;backdrop-filter:blur(8px);font-size:12px;color:#dbeafe}
-.hero h1{font-size:clamp(40px,10vw,76px);line-height:1;margin:12px 0 8px;letter-spacing:-2px}.hero .creator{color:#dce7f5;margin:0 0 20px;font-size:15px}.hero .desc{color:#d8e2ef;max-width:600px;margin:0 auto 24px;line-height:1.8}
-.start{border:0;background:#fff;color:#07111f;border-radius:17px;padding:15px 34px;font-weight:900;font-size:17px;box-shadow:0 12px 40px #0008}.start:active{transform:scale(.98)}
-.app{display:none;min-height:100svh}.top{position:sticky;top:0;z-index:10;background:#08111fe8;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px 16px}.topin{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}.mini{display:flex;align-items:center;gap:10px}.avatar{width:44px;height:44px;border-radius:14px;object-fit:cover;border:1px solid #ffffff30}.title b{display:block}.title span{font-size:11px;color:var(--muted)}
-.nav{display:flex;gap:7px;overflow:auto;padding:11px 0 1px;max-width:1050px;margin:auto}.nav button{flex:0 0 auto;border:1px solid var(--line);background:#0b1727;color:#cbd5e1;border-radius:12px;padding:9px 12px}.nav button.active{background:var(--accent);border-color:var(--accent);color:white}
-main{max-width:1050px;margin:auto;padding:18px 14px 42px}.view{display:none}.view.show{display:block}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:14px}.stat b{display:block;font-size:25px}.stat span{font-size:11px;color:var(--muted)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:16px;margin-top:13px}.card h2{font-size:17px;margin:0 0 13px}.progress{height:10px;border-radius:99px;background:#18273a;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--accent)}
-.task{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:11px;margin:8px 0;background:#0a1626}.task input{width:19px;height:19px;accent-color:var(--ok)}.task.done{opacity:.58}.task.done .name{text-decoration:line-through}.name{font-size:14px;font-weight:750}.time{font-size:11px;color:var(--muted);white-space:nowrap}
-.days{display:flex;gap:7px;overflow:auto}.days button{border:1px solid var(--line);background:#0a1626;color:#cbd5e1;border-radius:11px;padding:9px 12px}.days button.sel{background:#fff;color:#07111f}
-.note,.field{width:100%;background:#081421;color:white;border:1px solid var(--line);border-radius:13px;padding:11px}.note{min-height:90px;resize:vertical}.field{margin:7px 0}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.photo{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:15px;border:1px solid var(--line);cursor:pointer}
-.quote{font-size:15px;line-height:1.8;color:#dbeafe}
-.btnrow{display:flex;flex-wrap:wrap;gap:8px}.primary,.secondary,.danger{border:0;border-radius:12px;padding:10px 13px}.primary{background:var(--accent);color:#fff}.secondary{background:#17263a;color:#fff}.danger{background:#35161a;color:#ffd9dd}
-.small{font-size:11px;color:var(--muted)}
-.custom-card{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:15px;padding:11px;margin:8px 0;background:#0a1626}.custom-card img{width:72px;height:72px;object-fit:cover;border-radius:12px}.custom-card .grow{flex:1}.custom-card b{display:block;margin-bottom:5px}.custom-card p{margin:0;color:#cbd5e1;white-space:pre-wrap}
-.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;z-index:50;padding:18px}.modal.show{display:grid}.modal img{max-width:95vw;max-height:85vh;border-radius:18px}.close{position:fixed;top:16px;left:16px;border:0;border-radius:50%;width:42px;height:42px;background:#fff;color:#111;font-size:20px}
-footer{text-align:center;color:#7f91a7;font-size:12px;padding:10px 0 30px}
-@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,1fr)}.task{grid-template-columns:25px 1fr}.time{grid-column:2}.profile{width:125px;height:125px}}
+:root{--bg:#06111f;--panel:#0b1b2d;--panel2:#10253a;--line:#1d3b57;--text:#f5f8fc;--muted:#9fb2c7;--accent:#19d3ae;--blue:#2b8cff;--danger:#ff647c;--warn:#ffc857;--r:20px}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial;background:linear-gradient(145deg,#04101c,#081a2d 55%,#06111f);color:var(--text)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}.app{min-height:100vh}
+.top{position:sticky;top:0;z-index:20;background:rgba(6,17,31,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:10px 16px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid var(--accent)}
+.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:var(--panel);color:white;border-radius:12px;padding:10px 13px}.btn.primary{background:var(--accent);color:#03131a;border:0;font-weight:900}.btn.danger{border-color:#63303b;color:#ff9aaa}
+.layout{max-width:1200px;margin:auto;display:grid;grid-template-columns:235px 1fr;gap:18px;padding:18px}
+.side{background:rgba(11,27,45,.9);border:1px solid var(--line);border-radius:var(--r);padding:12px;height:max-content;position:sticky;top:80px}
+.side button{width:100%;border:0;background:transparent;color:var(--muted);padding:12px;border-radius:13px;text-align:right;margin:2px 0}.side button.active,.side button:hover{background:var(--panel2);color:white}
+.content{min-width:0}.hero{border:1px solid var(--line);border-radius:26px;padding:22px;display:flex;gap:20px;align-items:center;background:radial-gradient(circle at 80% 20%,rgba(25,211,174,.18),transparent 35%),linear-gradient(135deg,#0d2740,#0a1728)}
+.hero img{width:120px;height:120px;object-fit:cover;border-radius:22px;border:2px solid rgba(255,255,255,.25)}h1{margin:0 0 7px;font-size:31px}.hero p{color:var(--muted);line-height:1.7;margin:5px 0 10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.stat,.card{background:rgba(11,27,45,.9);border:1px solid var(--line);border-radius:18px;padding:15px}.stat b{display:block;font-size:24px}.muted{color:var(--muted);font-size:13px}
+.section{margin-top:18px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.section-head h2{margin:0;font-size:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.course,.item{background:linear-gradient(160deg,#102943,#0a192a);border:1px solid var(--line);border-radius:18px;padding:15px}.course h3,.item h3{margin:0 0 6px}.ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#123b58;font-size:24px;margin-bottom:10px}
+.progress{height:8px;background:#102235;border-radius:99px;overflow:hidden;margin:11px 0}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:99px}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.action{border:1px solid var(--line);background:#10253a;color:white;border-radius:13px;padding:15px;text-align:center}
+.page{display:none}.page.active{display:block}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.empty{padding:30px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.modalbox{width:min(620px,100%);max-height:90vh;overflow:auto;background:#091a2c;border:1px solid var(--line);border-radius:22px;padding:20px}
+.field{margin:10px 0}.field label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;background:#071625;border:1px solid var(--line);color:white;border-radius:12px;padding:11px}.field textarea{min-height:90px;resize:vertical}.row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.content-card{background:#081a2b;border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:10px}.content-card video,.content-card iframe{width:100%;max-height:430px;border-radius:12px;border:0}.content-card a{color:#65d9ff}
+.welcome{display:flex;position:fixed;inset:0;background:radial-gradient(circle at 50% 25%,#0c3b5e,#04101c 60%);z-index:100;align-items:center;justify-content:center;text-align:center;padding:24px}.welcome.hide{display:none}.welcome .box{max-width:520px}.welcome img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid var(--accent);box-shadow:0 0 0 10px rgba(25,211,174,.08),0 20px 70px rgba(0,0,0,.45)}.welcome h1{font-size:40px;margin-top:18px}.welcome p{color:var(--muted);line-height:1.8}.start{border:0;background:var(--accent);color:#03131a;font-weight:900;font-size:18px;padding:14px 28px;border-radius:16px}
+.mobile-nav{display:none}.tag{display:inline-block;padding:5px 8px;border-radius:999px;background:#123b58;color:#a9d9ff;font-size:12px}.schedule-day{margin-bottom:14px}.schedule-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:9px}.schedule-head h3{margin:0}.schedule-item{display:grid;grid-template-columns:105px 1fr auto;gap:12px;align-items:center;padding:12px;border-top:1px solid var(--line)}.schedule-item:first-child{border-top:0}.schedule-time{font-weight:800;color:#75dfff}.schedule-item.done{opacity:.58}.schedule-item.done .schedule-title{text-decoration:line-through}.schedule-check{width:22px;height:22px;accent-color:var(--accent)}.schedule-pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#123b58;color:#a9d9ff;font-size:11px;margin-left:5px}.task{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(160deg,#102943,#0a192a);border:1px solid var(--line);border-radius:17px;padding:14px;margin-bottom:10px}.task.done{opacity:.62}.task-check{width:26px;height:26px;accent-color:var(--accent);margin-top:3px}.task-main{flex:1}.task-title{font-size:17px;font-weight:800}.task.done .task-title{text-decoration:line-through}.task-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.task-actions{display:flex;gap:6px}.overdue{color:#ff9aaa}.today{color:#ffc857}
+.note{font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:800px){.layout{display:block;padding:12px}.side{display:none}.hero{padding:18px}.hero img{width:88px;height:88px}.stats{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}.actions{grid-template-columns:repeat(2,1fr)}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:30;background:rgba(6,17,31,.97);border-top:1px solid var(--line);padding:7px}.mobile-nav button{background:transparent;border:0;color:var(--muted);font-size:12px}.mobile-nav button.active{color:var(--accent)}main{padding-bottom:75px}}
 </style>
 </head>
 <body>
-<section class="landing" id="landing">
-  <div class="hero">
-    <img class="profile" src="images/icon-512.png" alt="زياد">
-    <span class="kicker">PERSONAL STUDY HUB</span>
-    <h1 id="landingTitle">Ziad Study Hub</h1>
-    <p class="creator">صنعها <b>زياد محمد</b> ✨</p>
-    <p class="desc" id="landingDesc">مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.</p>
-    <button class="start" onclick="enterApp()">START 🚀</button>
-  </div>
-</section>
-
-<section class="app" id="app">
+<div class="app">
 <header class="top">
-  <div class="topin">
-    <div class="mini"><img class="avatar" src="images/icon-512.png"><div class="title"><b>Ziad Study Hub</b><span>صنعها زياد محمد • Keep going.</span></div></div>
-  </div>
-  <div class="nav" id="nav">
-    <button class="active" data-v="home">الرئيسية</button><button data-v="week">الأسبوع</button><button data-v="today">تاسكات اليوم</button><button data-v="memories">صوري</button><button data-v="custom">إضافاتي</button><button data-v="stats">الإحصائيات</button><button data-v="control">التحكم ⚙️</button>
-  </div>
+  <div class="brand"><img src="images/icon-512.png"><span>Ziad Study Hub</span></div>
+  <div class="top-actions"><button class="btn" onclick="showWelcome()">🏠</button><button class="btn primary" onclick="openAdmin()">⚙️ الإدارة</button></div>
 </header>
 
-<main>
-<section id="home" class="view show">
-  <div class="grid"><div class="stat"><b id="todayPct">0%</b><span>إنجاز اليوم</span></div><div class="stat"><b id="weekPct">0%</b><span>إنجاز الأسبوع</span></div><div class="stat"><b id="doneCount">0</b><span>مكتمل</span></div><div class="stat"><b id="leftCount">0</b><span>متبقي</span></div></div>
-  <div class="card"><h2>تقدم اليوم</h2><div class="progress"><i id="todayBar"></i></div><p class="quote" id="todayText"></p></div>
-  <div class="card"><h2 id="homeMessageTitle">رسالة زياد لنفسه</h2><p class="quote" id="homeMessage">الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي.</p></div>
-  <div class="card"><h2>ملاحظات اليوم</h2><textarea id="noteHome" class="note" placeholder="اكتب أي حاجة مهمة..."></textarea></div>
+<div class="layout">
+<aside class="side">
+  <button class="nav active" data-page="home">🏠 لوحة التحكم</button>
+  <button class="nav" data-page="subjects">📚 موادي</button>
+  <button class="nav" data-page="videos">🎥 الفيديوهات</button>
+  <button class="nav" data-page="notes">📄 المذكرات</button>
+  <button class="nav" data-page="quizzes">📝 الاختبارات</button>
+  <button class="nav" data-page="progress">📈 تقدمي</button>
+  <button class="nav" data-page="questions">💬 أسئلتي</button>
+<button class="nav" data-page="tasks">✅ التسكات</button>
+</aside>
+
+<main class="content">
+<section id="home" class="page active">
+  <div class="hero"><img src="images/icon-512.png"><div><h1>أهلاً يا زياد 👋</h1><p>دي منصتك الشخصية. من زر <b>الإدارة</b> تقدر تضيف فيديوهات، مذكرات، دروس، اختبارات وأسئلة بنفسك.</p><button class="btn primary" onclick="go('subjects')">ابدأ المذاكرة 🚀</button></div></div>
+  <div class="stats"><div class="stat"><b id="statContent">0</b><span>محتوى مضاف</span></div><div class="stat"><b id="statVideos">0</b><span>فيديوهات</span></div><div class="stat"><b id="statNotes">0</b><span>مذكرات</span></div><div class="stat"><b id="statTasks">0</b><span>تسكات</span></div></div>
+  <div class="section"><div class="section-head"><h2>موادي الدراسية</h2><span class="muted">ثالثة ثانوي</span></div><div class="grid3">
+    <div class="course"><div class="ico">∑</div><h3>Math</h3><p class="muted">فيديوهات + مذكرات + اختبارات</p><button class="btn" onclick="openSubject('Math')">دخول المادة</button></div>
+    <div class="course"><div class="ico">⚛️</div><h3>Physics</h3><p class="muted">شرح + مسائل + مراجعة</p><button class="btn" onclick="openSubject('Physics')">دخول المادة</button></div>
+    <div class="course"><div class="ico">🧪</div><h3>Chemistry</h3><p class="muted">دروس + أوراق + اختبارات</p><button class="btn" onclick="openSubject('Chemistry')">دخول المادة</button></div>
+  </div></div>
+  <div class="section"><div class="section-head"><h2>آخر ما أضفته</h2></div><div id="latest"></div></div>
 </section>
 
-<section id="week" class="view"><div class="card"><h2>الجدول الأسبوعي</h2><div id="weekList"></div></div></section>
-
-<section id="today" class="view"><div class="card"><h2>تاسكات اليوم</h2><div class="days" id="dayPicker"></div><div id="todayList"></div><h3>ملاحظات</h3><textarea id="noteToday" class="note" placeholder="ملاحظات اليوم..."></textarea></div></section>
-
-<section id="memories" class="view"><div class="card"><h2>صوري 📸</h2><p class="quote">صورك الأساسية موجودة هنا، وتقدر تضيف صور جديدة من قسم «إضافاتي».</p><div class="gallery" id="gallery"></div></div></section>
-
-<section id="custom" class="view">
-  <div class="card"><h2>إضافاتي ✨</h2><p class="small">أي صورة أو كلام تضيفه هنا بيتحفظ على نفس المتصفح عندك.</p><div id="customList"></div></div>
-</section>
-
-<section id="stats" class="view"><div class="card"><h2>إحصائياتك</h2><p>إجمالي التاسكات: <b id="stTotal"></b></p><p>المكتمل: <b id="stDone"></b></p><p>المتبقي: <b id="stLeft"></b></p><p>نسبة الأسبوع: <b id="stPct"></b></p><div class="progress"><i id="stBar"></i></div></div><div class="card"><h2>إعادة ضبط</h2><button class="secondary" id="reset">مسح علامات الإنجاز</button></div></section>
-
-<section id="control" class="view">
-  <div class="card"><h2>لوحة تحكم زياد ⚙️</h2><p class="small">من هنا تقدر تغيّر الكلام وتضيف صور أو بطاقات شخصية من غير ما تلمس الكود.</p></div>
-  <div class="card">
-    <h2>تعديل الواجهة</h2>
-    <input id="editTitle" class="field" placeholder="اسم المنصة">
-    <textarea id="editDesc" class="note" placeholder="وصف المنصة"></textarea>
-    <input id="editMessageTitle" class="field" placeholder="عنوان الرسالة">
-    <textarea id="editMessage" class="note" placeholder="الرسالة"></textarea>
-    <div class="btnrow"><button class="primary" onclick="saveSettings()">حفظ التعديلات</button><button class="secondary" onclick="restoreSettings()">استرجاع الافتراضي</button></div>
+<section id="subjects" class="page"><div class="section-head"><h2>📚 موادي</h2><button class="btn primary" onclick="openAdmin('content')">+ إضافة محتوى</button></div><div class="grid3" id="subjectCards"></div></section>
+<section id="videos" class="page"><div class="section-head"><h2>🎥 الفيديوهات</h2><button class="btn primary" onclick="openAdmin('video')">+ إضافة فيديو</button></div><div id="videoList"></div></section>
+<section id="notes" class="page"><div class="section-head"><h2>📄 المذكرات والأوراق</h2><button class="btn primary" onclick="openAdmin('note')">+ إضافة مذكرة</button></div><div id="noteList"></div></section>
+<section id="quizzes" class="page"><div class="section-head"><h2>📝 الاختبارات</h2><button class="btn primary" onclick="openAdmin('quiz')">+ إضافة اختبار</button></div><div id="quizList"></div></section>
+<section id="progress" class="page"><div class="section-head"><h2>📈 تقدمي</h2></div><div class="card"><p>نسبة الاختبارات المكتملة</p><div class="progress"><i id="progressBar" style="width:0%"></i></div><b id="progressText">0%</b><p class="note">النظام يحفظ تقدمك على نفس الجهاز والمتصفح.</p></div></section>
+<section id="tasks" class="page">
+  <div class="section-head">
+    <div>
+      <h2>📋 جدولي الأسبوعي والتسكات</h2>
+      <div class="muted">الجدول اللي عملناه من البداية — السبت إلى الجمعة</div>
+    </div>
   </div>
-  <div class="card">
-    <h2>إضافة صورة + كلام</h2>
-    <input id="photoFile" class="field" type="file" accept="image/*">
-    <input id="photoTitle" class="field" placeholder="عنوان الصورة">
-    <textarea id="photoText" class="note" placeholder="اكتب كلام يظهر تحت الصورة..."></textarea>
-    <div class="btnrow"><button class="primary" onclick="addCustom()">إضافة للمنصة</button></div>
-    <p class="small">نصيحة: الصور الكبيرة تستهلك مساحة المتصفح؛ الأفضل اختيار صور واضحة بحجم معقول.</p>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="toolbar">
+      <button class="btn primary" onclick="scheduleDay('all')">كل الأسبوع</button>
+      <button class="btn" onclick="scheduleDay('Saturday')">السبت</button>
+      <button class="btn" onclick="scheduleDay('Sunday')">الأحد</button>
+      <button class="btn" onclick="scheduleDay('Monday')">الاثنين</button>
+      <button class="btn" onclick="scheduleDay('Tuesday')">الثلاثاء</button>
+      <button class="btn" onclick="scheduleDay('Wednesday')">الأربعاء</button>
+      <button class="btn" onclick="scheduleDay('Thursday')">الخميس</button>
+      <button class="btn" onclick="scheduleDay('Friday')">الجمعة</button>
+    </div>
+    <div class="note">الأولوية: Math → Physics → Chemistry • كرة القدم: الثلاثاء والخميس 9 مساءً • الجيم: 3 أيام حسب النسخة الأخيرة من الجدول.</div>
   </div>
+
+  <div id="scheduleList"></div>
 </section>
-<footer>© 2026 Ziad Study Hub • صنعها زياد محمد</footer>
+<section id="questions" class="page"><div class="section-head"><h2>💬 أسئلتي</h2><button class="btn primary" onclick="openAdmin('question')">+ إضافة سؤال</button></div><div id="questionList"></div></section>
 </main>
-</section>
+</div>
+<nav class="mobile-nav"><button class="nav active" data-page="home">🏠<br>الرئيسية</button><button class="nav" data-page="subjects">📚<br>موادي</button><button class="nav" data-page="quizzes">📝<br>اختبارات</button><button class="nav" data-page="progress">📈<br>تقدمي</button></nav>
+</div>
 
-<div class="modal" id="modal"><button class="close" onclick="closeModal()">×</button><img id="modalImg"></div>
+<div class="welcome" id="welcome"><div class="box"><img src="images/icon-512.png"><h1>Ziad Study Hub</h1><p>منصتك الشخصية للمذاكرة. أضف المحتوى بنفسك من لوحة الإدارة.</p><button class="start" onclick="hideWelcome()">ابدأ 🚀</button><div class="note" style="margin-top:12px">صنعها زياد محمد</div></div></div>
+
+<div class="modal hidden" id="taskModal"><div class="modalbox">
+  <h2>✅ إضافة تاسك</h2>
+  <form id="taskForm">
+    <div class="field"><label>اسم التاسك</label><input id="taskTitle" required placeholder="مثلاً: حل واجب التفاضل"></div>
+    <div class="field"><label>المادة</label>
+      <select id="taskSubject"><option>Math</option><option>Physics</option><option>Chemistry</option><option>عام</option></select>
+    </div>
+    <div class="field"><label>التاريخ</label><input id="taskDate" type="date"></div>
+    <div class="field"><label>الوقت (اختياري)</label><input id="taskTime" type="time"></div>
+    <div class="field"><label>ملاحظات</label><textarea id="taskDesc" placeholder="أي تفاصيل للتاسك"></textarea></div>
+    <div class="row"><button type="button" class="btn" onclick="closeTaskForm()">إلغاء</button><button class="btn primary">حفظ التاسك</button></div>
+  </form>
+</div></div>
+
+<div class="modal hidden" id="adminModal"><div class="modalbox">
+  <h2>⚙️ لوحة إدارة زياد</h2>
+  <p class="note">أنت تقدر تضيف وتعدل وتحذف المحتوى من هنا. البيانات تُحفظ في المتصفح على الجهاز.</p>
+  <div class="toolbar"><button class="btn" onclick="openAdmin('content')">➕ محتوى</button><button class="btn" onclick="openAdmin('video')">🎥 فيديو</button><button class="btn" onclick="openAdmin('note')">📄 مذكرة</button><button class="btn" onclick="openAdmin('quiz')">📝 اختبار</button><button class="btn" onclick="openAdmin('question')">💬 سؤال</button></div>
+  <div id="adminList"></div>
+  <div class="row"><button class="btn" onclick="closeModal()">إغلاق</button></div>
+</div></div>
+
+<div class="modal hidden" id="formModal"><div class="modalbox">
+  <h2 id="formTitle">إضافة محتوى</h2>
+  <form id="contentForm">
+    <div class="field"><label>النوع</label><select id="fType"><option value="video">🎥 فيديو</option><option value="note">📄 مذكرة / ورقة</option><option value="quiz">📝 اختبار</option><option value="question">💬 سؤال</option><option value="lesson">📚 درس / نص</option></select></div>
+    <div class="field"><label>العنوان</label><input id="fTitle" required placeholder="مثلاً: التفاضل — الدرس الأول"></div>
+    <div class="field"><label>المادة</label><select id="fSubject"><option>Math</option><option>Physics</option><option>Chemistry</option></select></div>
+    <div class="field"><label>الوصف</label><textarea id="fDesc" placeholder="اكتب وصفًا مختصرًا"></textarea></div>
+    <div id="videoFields">
+      <div class="field"><label>رابط الفيديو (YouTube أو رابط فيديو مباشر)</label><input id="fUrl" placeholder="https://..."></div>
+    </div>
+    <div id="fileFields" class="hidden">
+      <div class="field"><label>ملف PDF / ورقة</label><input id="fFile" type="file" accept=".pdf,application/pdf"></div>
+    </div>
+    <div id="quizFields" class="hidden">
+      <div class="field"><label>السؤال</label><textarea id="fQuestion" placeholder="مثلاً: ما قيمة ...؟"></textarea></div>
+      <div class="field"><label>الإجابة الصحيحة</label><input id="fAnswer"></div>
+    </div>
+    <div id="textFields" class="hidden"><div class="field"><label>المحتوى</label><textarea id="fText" placeholder="اكتب الشرح هنا"></textarea></div></div>
+    <div class="row"><button type="button" class="btn" onclick="closeForm()">إلغاء</button><button class="btn primary">حفظ</button></div>
+  </form>
+</div></div>
 
 <script>
-const schedule={
-"السبت":[["9:00–10:30","ماث — مذاكرة وفهم"],["11:00–12:30","ماث — حل أسئلة"],["2:00–3:30","فيزياء"],["4:00–5:30","كيمياء"],["7:00–9:30","درس ماث"]],
-"الأحد":[["9:00–2:00","درس كيمياء + الطريق"],["3:15–4:45","مراجعة درس الكيمياء + حل"],["5:15–6:45","جيم"],["7:30–9:00","ماث"],["9:30–10:45","فيزياء"]],
-"الإثنين":[["9:00–2:00","درس فيزياء + الطريق"],["3:15–4:45","مراجعة درس الفيزياء + حل"],["5:15–6:45","جيم"],["7:30–9:00","ماث"],["9:30–10:45","كيمياء"],["11:30–12:15","ماث — مراجعة سريعة"]],
-"الثلاثاء":[["12:30–2:00","ماث — مذاكرة عميقة"],["2:30–4:00","فيزياء — فهم"],["4:30–6:00","ماث — حل مسائل"],["6:00–7:00","راحة + تجهيز للكورة"],["7:00–8:15","كيمياء"],["8:15–8:45","تجهيز للكورة"],["9:00","تمرين كورة"]],
-"الأربعاء":[["9:00–2:00","درس كيمياء + الطريق"],["3:30–5:00","مراجعة كيمياء"],["7:00–11:00","دروس ماث + كيمياء"]],
-"الخميس":[["9:00–2:00","درس فيزياء + الطريق"],["3:15–4:45","مراجعة درس الفيزياء + حل"],["5:15–6:45","جيم"],["7:30–8:30","ماث — جلسة خفيفة"],["8:30–9:00","تجهيز للكورة"],["9:00","تمرين كورة"]],
-"الجمعة":[["9:30–11:00","ماث — حل امتحان / مجموعة مسائل"],["11:30–1:00","فيزياء — حل"],["2:30–4:00","كيمياء — حل"],["5:00–6:30","ماث — مراجعة أخطاء الأسبوع"],["6:30–8:00","مراجعة أسبوعية + ترتيب الأسبوع القادم"]]
-};
-const days=Object.keys(schedule), key="ziadTasksV3", notesKey="ziadNotesV3", settingsKey="ziadSettingsV3", customKey="ziadCustomV3";
-let state=JSON.parse(localStorage.getItem(key)||"{}"), notes=JSON.parse(localStorage.getItem(notesKey)||"{}"), custom=JSON.parse(localStorage.getItem(customKey)||"[]");
-let settings=Object.assign({title:"Ziad Study Hub",desc:"مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.",messageTitle:"رسالة زياد لنفسه",message:"الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي."},JSON.parse(localStorage.getItem(settingsKey)||"{}"));
-let selected=days[new Date().getDay()===0?6:new Date().getDay()-1];
+const KEY='ziad_v6_items';
+let items=JSON.parse(localStorage.getItem(KEY)||'[]');
+let selectedType='content';
 
-function enterApp(){document.getElementById("landing").style.display="none";document.getElementById("app").style.display="block";window.scrollTo(0,0)}
-function id(d,i){return d+"_"+i} function isDone(d,i){return !!state[id(d,i)]}
-function stats(){let total=0,done=0;days.forEach(d=>schedule[d].forEach((_,i)=>{total++;if(isDone(d,i))done++}));return {total,done,left:total-done,pct:total?Math.round(done/total*100):0}}
-function dayPct(d){let a=schedule[d],n=a.filter((_,i)=>isDone(d,i)).length;return a.length?Math.round(n/a.length*100):0}
-function taskHTML(d,i,x){return `<label class="task ${isDone(d,i)?'done':''}"><input type="checkbox" ${isDone(d,i)?'checked':''} onchange="state['${id(d,i)}']=this.checked;save()"><span class="name">${x[1]}</span><span class="time">${x[0]}</span></label>`}
-function save(){localStorage.setItem(key,JSON.stringify(state));localStorage.setItem(notesKey,JSON.stringify(notes));render()}
-function render(){
- const s=stats(), items=schedule[selected]||[], td=items.filter((_,i)=>isDone(selected,i)).length, tp=items.length?Math.round(td/items.length*100):0;
- document.getElementById("todayPct").textContent=tp+"%";document.getElementById("weekPct").textContent=s.pct+"%";document.getElementById("doneCount").textContent=s.done;document.getElementById("leftCount").textContent=s.left;
- document.getElementById("todayBar").style.width=tp+"%";document.getElementById("todayText").textContent=`${td} من ${items.length} تاسكات مكتملة — ${selected}`;
- document.getElementById("noteHome").value=notes[selected]||"";document.getElementById("noteToday").value=notes[selected]||"";
- document.getElementById("todayList").innerHTML=items.map((x,i)=>taskHTML(selected,i,x)).join("");
- document.getElementById("weekList").innerHTML=days.map(d=>`<div class="card" style="margin-top:10px;background:#091626"><h3>${d} <small style="color:#8fa1b7">(${dayPct(d)}%)</small></h3>${schedule[d].map((x,i)=>taskHTML(d,i,x)).join("")}</div>`).join("");
- document.getElementById("dayPicker").innerHTML=days.map(d=>`<button class="${d===selected?'sel':''}" onclick="selected='${d}';render()">${d}</button>`).join("");
- document.getElementById("stTotal").textContent=s.total;document.getElementById("stDone").textContent=s.done;document.getElementById("stLeft").textContent=s.left;document.getElementById("stPct").textContent=s.pct+"%";document.getElementById("stBar").style.width=s.pct+"%";
- document.getElementById("landingTitle").textContent=settings.title;document.getElementById("landingDesc").textContent=settings.desc;document.getElementById("homeMessageTitle").textContent=settings.messageTitle;document.getElementById("homeMessage").textContent=settings.message;
- document.getElementById("editTitle").value=settings.title;document.getElementById("editDesc").value=settings.desc;document.getElementById("editMessageTitle").value=settings.messageTitle;document.getElementById("editMessage").value=settings.message;
- renderCustom();
+function save(){localStorage.setItem(KEY,JSON.stringify(items));renderAll()}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function hideWelcome(){document.getElementById('welcome').classList.add('hide');localStorage.setItem('ziad_started','1')}
+function showWelcome(){document.getElementById('welcome').classList.remove('hide')}
+if(localStorage.getItem('ziad_started')==='1') hideWelcome();
+
+function go(page){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(page).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});renderAll()}
+document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>go(b.dataset.page));
+
+function openSubject(s){go('subjects');setTimeout(()=>{document.querySelectorAll('.course-filter').forEach(x=>x.classList.toggle('hidden',x.dataset.subject!==s))},20)}
+
+function openAdmin(type='content'){
+ selectedType=type;
+ document.getElementById('adminModal').classList.remove('hidden');
+ renderAdmin();
 }
-document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".view").forEach(x=>x.classList.remove("show"));document.getElementById(b.dataset.v).classList.add("show");window.scrollTo(0,0)});
-document.getElementById("noteHome").oninput=e=>{notes[selected]=e.target.value;localStorage.setItem(notesKey,JSON.stringify(notes));document.getElementById("noteToday").value=e.target.value};
-document.getElementById("noteToday").oninput=e=>{notes[selected]=e.target.value;localStorage.setItem(notesKey,JSON.stringify(notes));document.getElementById("noteHome").value=e.target.value};
-document.getElementById("reset").onclick=()=>{if(confirm("تمسح كل علامات الإنجاز؟")){state={};save()}};
-function saveSettings(){settings={title:document.getElementById("editTitle").value.trim()||"Ziad Study Hub",desc:document.getElementById("editDesc").value.trim(),messageTitle:document.getElementById("editMessageTitle").value.trim()||"رسالة زياد لنفسه",message:document.getElementById("editMessage").value.trim()};localStorage.setItem(settingsKey,JSON.stringify(settings));render();alert("اتحفظت التعديلات ✨")}
-function restoreSettings(){localStorage.removeItem(settingsKey);settings={title:"Ziad Study Hub",desc:"مكانك أنت: مذاكرة، دروس، تاسكات، كورة، جيم، صور وملاحظات — كله في منصة واحدة.",messageTitle:"رسالة زياد لنفسه",message:"الهدف كبير، بس بيتاخد حتة حتة. خلّي التاسك اللي قدامك أهم حاجة دلوقتي."};render()}
-function addCustom(){
- const file=document.getElementById("photoFile").files[0], title=document.getElementById("photoTitle").value.trim(), text=document.getElementById("photoText").value.trim();
- if(!file && !text){alert("ضيف صورة أو كلام الأول.");return}
- const finish=(image)=>{custom.unshift({id:Date.now(),title:title||"إضافة جديدة",text,image});localStorage.setItem(customKey,JSON.stringify(custom));document.getElementById("photoFile").value="";document.getElementById("photoTitle").value="";document.getElementById("photoText").value="";render();alert("اتضافت للمنصة ✨")};
- if(file){const r=new FileReader();r.onload=()=>finish(r.result);r.readAsDataURL(file)}else finish("");
+function closeModal(){document.getElementById('adminModal').classList.add('hidden')}
+function closeForm(){document.getElementById('formModal').classList.add('hidden')}
+
+function renderAdmin(){
+ const list=document.getElementById('adminList');
+ if(!items.length){list.innerHTML='<div class="empty">لسه مفيش محتوى. ابدأ بإضافة أول فيديو أو مذكرة.</div>';return}
+ list.innerHTML=items.map(x=>`<div class="content-card"><div style="display:flex;justify-content:space-between;gap:10px"><div><span class="tag">${typeName(x.type)}</span> <span class="tag">${esc(x.subject)}</span><h3>${esc(x.title)}</h3></div><button class="btn danger" onclick="removeItem('${x.id}')">حذف</button></div><div class="note">${esc(x.desc||'')}</div></div>`).join('')
 }
-function deleteCustom(i){custom.splice(i,1);localStorage.setItem(customKey,JSON.stringify(custom));render()}
-function renderCustom(){
- const el=document.getElementById("customList");
- if(!custom.length){el.innerHTML='<p class="small">لسه مفيش إضافات. جرّب تضيف صورة أو رسالة من فوق.</p>';return}
- el.innerHTML=custom.map((x,i)=>`<div class="custom-card">${x.image?`<img src="${x.image}" onclick="openImg('${x.image}')">`:""}<div class="grow"><b>${escapeHtml(x.title)}</b><p>${escapeHtml(x.text)}</p><button class="danger" style="margin-top:8px" onclick="deleteCustom(${i})">حذف</button></div></div>`).join("");
+function typeName(t){return ({video:'فيديو',note:'مذكرة',quiz:'اختبار',question:'سؤال',lesson:'درس'}[t]||t)}
+function removeItem(id){if(confirm('تحذف المحتوى ده؟')){items=items.filter(x=>x.id!==id);save();renderAdmin()}}
+
+function showForm(type){
+ closeModal(); selectedType=type;
+ document.getElementById('formModal').classList.remove('hidden');
+ document.getElementById('fType').value=type==='content'?'video':type;
+ updateFields();
 }
-function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
-function openImg(src){document.getElementById("modalImg").src=src;document.getElementById("modal").classList.add("show")}
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-const gallery=document.getElementById("gallery");
-[1,2,3,4,5,6].forEach(i=>{const img=document.createElement("img");img.className="photo";img.src=`images/ziad${i}.jpg`;img.alt="صورة زياد";img.onclick=()=>openImg(img.src);gallery.appendChild(img)});
-render();
+document.getElementById('contentForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const type=document.getElementById('fType').value;
+ const x={id:uid(),type,title:document.getElementById('fTitle').value.trim(),subject:document.getElementById('fSubject').value,desc:document.getElementById('fDesc').value.trim(),created:Date.now()};
+ if(type==='video'){x.url=document.getElementById('fUrl').value.trim(); if(!x.url){alert('اكتب رابط الفيديو');return}}
+ if(type==='note'){const f=document.getElementById('fFile').files[0]; if(!f){alert('اختار ملف PDF');return} if(f.size>12*1024*1024){alert('خلي ملف الـPDF أقل من 12MB');return} x.fileName=f.name;x.fileData=await fileToDataURL(f)}
+ if(type==='quiz'){x.question=document.getElementById('fQuestion').value.trim();x.answer=document.getElementById('fAnswer').value.trim(); if(!x.question||!x.answer){alert('اكتب السؤال والإجابة الصحيحة');return}}
+ if(type==='question'){x.question=document.getElementById('fQuestion').value.trim(); if(!x.question){alert('اكتب السؤال');return}}
+ if(type==='lesson'){x.text=document.getElementById('fText').value.trim(); if(!x.text){alert('اكتب محتوى الدرس');return}}
+ items.unshift(x);save();closeForm();go(type==='video'?'videos':type==='note'?'notes':type==='quiz'?'quizzes':type==='question'?'questions':'subjects');
+});
+function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
+document.getElementById('fType').onchange=updateFields;
+function updateFields(){
+ const t=document.getElementById('fType').value;
+ document.getElementById('videoFields').classList.toggle('hidden',t!=='video');
+ document.getElementById('fileFields').classList.toggle('hidden',t!=='note');
+ document.getElementById('quizFields').classList.toggle('hidden',!(t==='quiz'||t==='question'));
+ document.getElementById('textFields').classList.toggle('hidden',t!=='lesson');
+}
+document.getElementById('fTitle').addEventListener('input',()=>{});
+document.querySelectorAll('[onclick^="openAdmin(\'"]').forEach(()=>{});
+
+
+const TASK_KEY='ziad_v6_tasks';
+let tasks=JSON.parse(localStorage.getItem(TASK_KEY)||'[]');
+let taskFilter='all';
+
+function saveTasks(){localStorage.setItem(TASK_KEY,JSON.stringify(tasks));renderTasks();renderAllStats()}
+function openTaskForm(){
+  document.getElementById('taskModal').classList.remove('hidden');
+  document.getElementById('taskForm').reset();
+  const d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  document.getElementById('taskDate').value=d.toISOString().slice(0,10);
+}
+function closeTaskForm(){document.getElementById('taskModal').classList.add('hidden')}
+document.getElementById('taskForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  tasks.unshift({
+    id:uid(), title:document.getElementById('taskTitle').value.trim(),
+    subject:document.getElementById('taskSubject').value,
+    date:document.getElementById('taskDate').value,
+    time:document.getElementById('taskTime').value,
+    desc:document.getElementById('taskDesc').value.trim(),
+    done:false, created:Date.now()
+  });
+  saveTasks(); closeTaskForm(); go('tasks');
+});
+function taskStatus(t){
+  if(t.done) return '<span class="tag">✅ مكتمل</span>';
+  if(!t.date) return '<span class="tag">📌 بدون موعد</span>';
+  const today=new Date(); today.setHours(0,0,0,0);
+  const d=new Date(t.date+'T00:00:00'); d.setHours(0,0,0,0);
+  if(d.getTime()<today.getTime()) return '<span class="tag overdue">⚠️ متأخر</span>';
+  if(d.getTime()===today.getTime()) return '<span class="tag today">🔥 اليوم</span>';
+  return '<span class="tag">📅 '+esc(t.date)+'</span>';
+}
+function toggleTask(id){
+  const t=tasks.find(x=>x.id===id); if(!t)return;
+  t.done=!t.done; saveTasks();
+}
+function deleteTask(id){
+  if(confirm('تحذف التاسك دي؟')){tasks=tasks.filter(x=>x.id!==id);saveTasks();}
+}
+function filterTasks(f){taskFilter=f;renderTasks()}
+function renderTasks(){
+  const list=document.getElementById('taskList'); if(!list)return;
+  let arr=tasks.filter(t=>taskFilter==='all'||(taskFilter==='done'?t.done:!t.done));
+  if(!arr.length){list.innerHTML='<div class="empty">مفيش تسكات هنا دلوقتي. اضغط + إضافة تاسك وابدأ 💪</div>';}
+  else list.innerHTML=arr.map(t=>`
+    <div class="task ${t.done?'done':''}">
+      <input class="task-check" type="checkbox" ${t.done?'checked':''} onchange="toggleTask('${t.id}')">
+      <div class="task-main">
+        <div class="task-title">${esc(t.title)}</div>
+        <div class="task-meta"><span class="tag">${esc(t.subject)}</span>${taskStatus(t)}${t.time?'<span class="tag">⏰ '+esc(t.time)+'</span>':''}</div>
+        ${t.desc?'<div class="note" style="margin-top:7px">'+esc(t.desc)+'</div>':''}
+      </div>
+      <div class="task-actions"><button class="btn danger" onclick="deleteTask('${t.id}')">حذف</button></div>
+    </div>`).join('');
+  const done=tasks.filter(t=>t.done).length, total=tasks.length, pct=total?Math.round(done/total*100):0;
+  const stats=document.getElementById('taskStats');
+  if(stats)stats.innerHTML=`<b>${done}/${total} مكتمل</b><div class="progress"><i style="width:${pct}%"></i></div><span class="muted">إنجاز التسكات: ${pct}%</span>`;
+}
+function renderAllStats(){
+  const done=tasks.filter(t=>t.done).length,total=tasks.length;
+  const el=document.getElementById('statTasks'); if(el)el.textContent=total;
+  renderTasks();
+}
+
+const SCHEDULE_KEY='ziad_v6_weekly_schedule_done';
+
+const weeklySchedule = [
+ {day:'Saturday', ar:'السبت', items:[
+  ['09:00 – 10:30','Math','مذاكرة Math'],
+  ['11:00 – 12:30','Math','حل أسئلة Math'],
+  ['14:00 – 15:30','Physics','مذاكرة Physics'],
+  ['16:00 – 17:30','Chemistry','مذاكرة Chemistry'],
+  ['19:00 – 21:30','Math','درس Math'],
+  ['21:30 – 23:00','عام','رجوع للبيت / راحة']
+ ]},
+ {day:'Sunday', ar:'الأحد', items:[
+  ['09:00 – 14:00','Chemistry','درس Chemistry + الطريق'],
+  ['15:15 – 16:45','Chemistry','مراجعة وحل مسائل Chemistry'],
+  ['17:15 – 18:45','عام','Gym'],
+  ['19:30 – 21:00','Math','مذاكرة Math'],
+  ['21:30 – 22:45','Physics','مذاكرة Physics']
+ ]},
+ {day:'Monday', ar:'الاثنين', items:[
+  ['09:00 – 14:00','Physics','درس Physics + الطريق'],
+  ['15:15 – 16:45','Physics','مراجعة وحل مسائل Physics'],
+  ['17:15 – 18:45','عام','Gym'],
+  ['19:30 – 21:00','Math','مذاكرة Math'],
+  ['21:30 – 22:45','Chemistry','مذاكرة Chemistry'],
+  ['23:30 – 00:15','Math','مراجعة Math سريعة']
+ ]},
+ {day:'Tuesday', ar:'الثلاثاء', items:[
+  ['12:30 – 14:00','Math','مذاكرة Math عميقة'],
+  ['14:30 – 16:00','Physics','فهم Physics'],
+  ['16:30 – 18:00','Math','حل مسائل Math'],
+  ['18:00 – 19:00','عام','راحة + تجهيز لكرة القدم'],
+  ['19:00 – 20:15','Chemistry','مذاكرة Chemistry'],
+  ['20:15 – 20:45','عام','تجهيز لكرة القدم'],
+  ['21:00','عام','كرة القدم ⚽']
+ ]},
+ {day:'Wednesday', ar:'الأربعاء', items:[
+  ['09:00 – 14:00','Chemistry','درس Chemistry + الطريق'],
+  ['15:30 – 17:00','Chemistry','مراجعة Chemistry'],
+  ['19:00 – 23:00','عام','دروس Math + Chemistry']
+ ]},
+ {day:'Thursday', ar:'الخميس', items:[
+  ['09:00 – 14:00','Physics','درس Physics + الطريق'],
+  ['15:15 – 16:45','Physics','مراجعة وحل مسائل Physics'],
+  ['17:15 – 18:45','عام','Gym'],
+  ['19:30 – 20:30','Math','Math خفيفة'],
+  ['20:30 – 21:00','عام','تجهيز لكرة القدم'],
+  ['21:00','عام','كرة القدم ⚽']
+ ]},
+ {day:'Friday', ar:'الجمعة', items:[
+  ['09:30 – 11:00','Math','امتحان / مجموعة مسائل Math'],
+  ['11:30 – 13:00','Physics','مذاكرة Physics'],
+  ['14:30 – 16:00','Chemistry','مذاكرة Chemistry'],
+  ['17:00 – 18:30','Math','مراجعة أخطاء Math'],
+  ['18:30 – 20:00','عام','مراجعة الأسبوع + التخطيط للأسبوع القادم']
+ ]}
+];
+
+let scheduleDone=JSON.parse(localStorage.getItem(SCHEDULE_KEY)||'{}');
+let scheduleFilter='all';
+
+function saveSchedule(){localStorage.setItem(SCHEDULE_KEY,JSON.stringify(scheduleDone));renderSchedule();}
+function scheduleId(day,idx){return day+'_'+idx}
+function scheduleDay(day){scheduleFilter=day;renderSchedule();}
+function toggleSchedule(id){scheduleDone[id]=!scheduleDone[id];saveSchedule();}
+function renderSchedule(){
+ const root=document.getElementById('scheduleList'); if(!root)return;
+ const groups=scheduleFilter==='all'?weeklySchedule:weeklySchedule.filter(d=>d.day===scheduleFilter);
+ root.innerHTML=groups.map(g=>{
+   const rows=g.items.map((it,i)=>{
+     const id=scheduleId(g.day,i), done=!!scheduleDone[id];
+     return `<div class="schedule-item ${done?'done':''}">
+       <div class="schedule-time">${it[0]}</div>
+       <div><div class="schedule-title">${esc(it[2])}</div><div class="muted"><span class="schedule-pill">${esc(it[1])}</span></div></div>
+       <input class="schedule-check" type="checkbox" ${done?'checked':''} onchange="toggleSchedule('${id}')">
+     </div>`;
+   }).join('');
+   const done=g.items.filter((_,i)=>scheduleDone[scheduleId(g.day,i)]).length;
+   return `<div class="card schedule-day"><div class="schedule-head"><h3>${g.ar}</h3><span class="tag">${done}/${g.items.length} مكتمل</span></div>${rows}</div>`;
+ }).join('');
+}
+function renderAll(){
+ const videos=items.filter(x=>x.type==='video'), notes=items.filter(x=>x.type==='note');
+ document.getElementById('statContent').textContent=items.length;
+ document.getElementById('statVideos').textContent=videos.length;
+ document.getElementById('statNotes').textContent=notes.length;
+ const done=JSON.parse(localStorage.getItem('ziad_quiz_done')||'[]');
+ const qs=items.filter(x=>x.type==='quiz').length; const pct=qs?Math.round(done.length/qs*100):0;
+ document.getElementById('statDone').textContent=pct+'%'; document.getElementById('progressBar').style.width=pct+'%'; document.getElementById('progressText').textContent=pct+'%';
+
+ document.getElementById('videoList').innerHTML=videos.length?videos.map(videoHTML).join(''):'<div class="empty">مفيش فيديوهات لسه. من زر + إضافة فيديو ضيف أول فيديو.</div>';
+ document.getElementById('noteList').innerHTML=notes.length?notes.map(noteHTML).join(''):'<div class="empty">مفيش مذكرات لسه. ارفع أول PDF من زر + إضافة مذكرة.</div>';
+ const quizzes=items.filter(x=>x.type==='quiz');
+ document.getElementById('quizList').innerHTML=quizzes.length?quizzes.map(quizHTML).join(''):'<div class="empty">مفيش اختبارات لسه.</div>';
+ const questions=items.filter(x=>x.type==='question');
+ document.getElementById('questionList').innerHTML=questions.length?questions.map(x=>`<div class="item"><span class="tag">${esc(x.subject)}</span><h3>${esc(x.title||'سؤال')}</h3><p>${esc(x.question)}</p></div>`).join(''):'<div class="empty">مفيش أسئلة مضافة.</div>';
+ renderTasks();
+ renderSchedule();
+ document.getElementById('latest').innerHTML=items.slice(0,4).map(x=>`<div class="content-card"><b>${typeName(x.type)} — ${esc(x.title)}</b><div class="note">${esc(x.subject)} • ${esc(x.desc||'')}</div></div>`).join('')||'<div class="empty">أضف أول محتوى من الإدارة.</div>';
+ document.getElementById('subjectCards').innerHTML=['Math','Physics','Chemistry'].map(s=>{
+   const arr=items.filter(x=>x.subject===s);
+   return `<div class="course"><div class="ico">${s==='Math'?'∑':s==='Physics'?'⚛️':'🧪'}</div><h3>${s}</h3><p class="muted">${arr.length} عنصر داخل المادة</p><button class="btn" onclick="showSubjectContent('${s}')">عرض المحتوى</button></div>`
+ }).join('');
+}
+function showSubjectContent(s){
+ go('subjects');
+ document.getElementById('subjectCards').innerHTML=`<div class="card" style="grid-column:1/-1"><h2>${s}</h2><div class="grid2">${items.filter(x=>x.subject===s).map(x=>`<div class="item"><span class="tag">${typeName(x.type)}</span><h3>${esc(x.title)}</h3><button class="btn" onclick="openItem('${x.id}')">فتح</button></div>`).join('')||'<div class="empty">مفيش محتوى في المادة دي لسه.</div>'}</div></div>`;
+}
+function openItem(id){
+ const x=items.find(i=>i.id===id); if(!x)return;
+ if(x.type==='video'){go('videos');setTimeout(()=>document.getElementById('v_'+id)?.scrollIntoView({behavior:'smooth'}),50)}
+ else if(x.type==='note'){go('notes');setTimeout(()=>document.getElementById('n_'+id)?.scrollIntoView({behavior:'smooth'}),50)}
+ else if(x.type==='quiz'){go('quizzes');setTimeout(()=>document.getElementById('q_'+id)?.scrollIntoView({behavior:'smooth'}),50)}
+ else if(x.type==='question'){go('questions')}
+ else {alert(x.text||'')}
+}
+function youtubeEmbed(url){
+ try{const u=new URL(url); let id=''; if(u.hostname.includes('youtu.be')) id=u.pathname.slice(1); if(u.hostname.includes('youtube.com')) id=u.searchParams.get('v')||u.pathname.split('/').pop(); return id?`<iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}" allowfullscreen loading="lazy"></iframe>`:''}catch{return ''}
+}
+function videoHTML(x){
+ const emb=youtubeEmbed(x.url); const body=emb||`<p><a href="${esc(x.url)}" target="_blank" rel="noopener">فتح الفيديو / الرابط ↗</a></p>`;
+ return `<div class="content-card" id="v_${x.id}"><span class="tag">${esc(x.subject)}</span><h3>${esc(x.title)}</h3><p class="note">${esc(x.desc)}</p>${body}</div>`
+}
+function noteHTML(x){return `<div class="content-card" id="n_${x.id}"><span class="tag">${esc(x.subject)}</span><h3>${esc(x.title)}</h3><p class="note">${esc(x.desc)}</p><a href="${x.fileData}" download="${esc(x.fileName||'note.pdf')}" target="_blank">📥 فتح / تحميل المذكرة</a></div>`}
+function quizHTML(x){
+ const done=JSON.parse(localStorage.getItem('ziad_quiz_done')||'[]'); const isDone=done.includes(x.id);
+ return `<div class="content-card" id="q_${x.id}"><span class="tag">${esc(x.subject)}</span><h3>${esc(x.title)}</h3><p><b>${esc(x.question)}</b></p><input id="ans_${x.id}" class="field" style="background:#071625;border:1px solid var(--line);color:white;border-radius:10px;padding:10px;width:100%" placeholder="اكتب إجابتك" ${isDone?'disabled':''}><button class="btn primary" style="margin-top:8px" onclick="checkQuiz('${x.id}')">${isDone?'✅ مكتمل':'تحقق من الإجابة'}</button></div>`
+}
+function checkQuiz(id){
+ const x=items.find(i=>i.id===id); const v=document.getElementById('ans_'+id).value.trim();
+ if(v.toLowerCase()===x.answer.toLowerCase()){const d=JSON.parse(localStorage.getItem('ziad_quiz_done')||'[]');if(!d.includes(id))d.push(id);localStorage.setItem('ziad_quiz_done',JSON.stringify(d));alert('إجابة صحيحة ✅');renderAll()}else alert('الإجابة مش مطابقة — جرّب تاني 💪');
+}
+
+document.querySelectorAll('.btn.primary').forEach(()=>{});
+/* Admin shortcuts */
+window.openAdmin=function(type='content'){document.getElementById('adminModal').classList.remove('hidden');selectedType=type;renderAdmin();if(type!=='content')setTimeout(()=>showForm(type),80)}
+window.showWelcome=showWelcome;window.hideWelcome=hideWelcome;window.openTaskForm=openTaskForm;window.closeTaskForm=closeTaskForm;window.toggleTask=toggleTask;window.deleteTask=deleteTask;window.filterTasks=filterTasks;window.scheduleDay=scheduleDay;window.toggleSchedule=toggleSchedule;window.go=go;window.openSubject=openSubject;window.showSubjectContent=showSubjectContent;window.openItem=openItem;window.checkQuiz=checkQuiz;window.removeItem=removeItem;window.closeModal=closeModal;window.closeForm=closeForm;
+renderAll();
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
 </script>
 </body>
 </html>
